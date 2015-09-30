@@ -11,13 +11,45 @@
 	<meta charset="UTF-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
+
+	<script type="text/javascript" src="source/js/library/jquery-2.1.4.min.js"></script>
 </head>
 
 
 
 <body>
 
-<div id="layout">HELLO WORLD</div>
+<div id="layout">HELLO WORLD
+	
+	<form id="form">
+		<input type="url" name="uri" />
+		<input type="submit" />
+	</form>
+	
+</div>
+
+<script type="text/javascript">
+"use strict";
+
+$(document).ready(function(){
+	$('form').on('submit', function(e){
+		e.preventDefault()
+		
+		let url = $('input[name="uri"]').val()
+			,form = $(this)
+		
+		$.ajax({
+			'url':		'http://www.ascii2d.net/imagesearch/search',
+			'method':	'POST',
+			'data':		form.serialize()
+		})
+		
+		console.log(url)
+		
+		return false
+	})
+})
+</script>
 
 </body>
 </html>
